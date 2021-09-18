@@ -1,0 +1,11 @@
+# Configurations
+.env
+.idea
+.DS_STORE
+thumbs.db
+
+# Logs
+*.log
+
+# Packages and dependencies
+node_modules
