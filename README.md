@@ -112,6 +112,7 @@ fetch(`${ apiURL }/users?username=${ username }`)
 Fetch an array of books based on a userId.
 
 #### Sample code
+
 ```javascript
 const apiUrl = 'your-heroku-url-here'
 
@@ -205,8 +206,8 @@ async function createBook(book) {
             }
             return response.json()
         })
-       
-       return [ null, createdBook ]
+
+        return [ null, createdBook ]
     } catch (error) {
         return [ error.message, null ]
     }
@@ -218,11 +219,11 @@ async function createBook(book) {
 
 ```json
 {
-   "id": 2,
-   "title": "Hitchiker's Guide to the Galaxy",
-   "author": "Douglas Adams",
-   "cover_url": "https://images-na.ssl-images-amazon.com/images/I/91TpAAdiBLL.jpg",
-   "userId": 1
+  "id": 2,
+  "title": "Hitchiker's Guide to the Galaxy",
+  "author": "Douglas Adams",
+  "cover_url": "https://images-na.ssl-images-amazon.com/images/I/91TpAAdiBLL.jpg",
+  "userId": 1
 }
 ```
 
@@ -235,30 +236,34 @@ The `PATCH` method is used to update a single record
 ```javascript
 const apiURL = 'your-api-url-goes-here'
 const apiKey = 'your-public-api-key-goes-here'
-const bookId = 1 // Update book with id 1
+const book = {
+    id: 1,
+    cover_url: 'new-cover-url-goes-here'
+}
 
-fetch(`${ apiURL }/books/${ bookId }`, {
-    method: 'PATCH', // NB: Set method to PATCH
-    headers: {
-        'x-api-key': apiKey,
-        'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-        // Provide new highScore to add to book with id 1
-        cover_url: "new-cover-url-here"
-    })
-})
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Could not update book')
-        }
-        return response.json()
-    })
-    .then(updatedBook => {
-        // updatedBook is the book with the Patched data
-    })
-    .catch(error => {
-    })
+async function updateBook(book) {
+    try {
+        const updatedBook = await fetch(`${ apiURL }/books/${ book.id }`, {
+            method: 'PATCH', // NB: Set method to PATCH
+            headers: {
+                'x-api-key': apiKey,
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                // Provide new cover_url to update book with id 1
+                cover_url: book.cover_url
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Could not update book')
+            }
+            return response.json()
+        })
+    } catch (error) {
+        return [ error.message, null ]
+    }
+}
+
 ```
 
 # Special thanks to Typicode for json-server
