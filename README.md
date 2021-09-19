@@ -188,6 +188,7 @@ const book = {
     title: "Hitchiker's Guide to the Galaxy",
     author: "Douglas Adams",
     cover_url: "https://images-na.ssl-images-amazon.com/images/I/91TpAAdiBLL.jpg",
+    read: false,
     userId
 }
 
@@ -223,6 +224,7 @@ async function createBook(book) {
   "title": "Hitchiker's Guide to the Galaxy",
   "author": "Douglas Adams",
   "cover_url": "https://images-na.ssl-images-amazon.com/images/I/91TpAAdiBLL.jpg",
+  "read": false,
   "userId": 1
 }
 ```
@@ -238,7 +240,7 @@ const apiURL = 'your-api-url-goes-here'
 const apiKey = 'your-public-api-key-goes-here'
 const book = {
     id: 1,
-    cover_url: 'new-cover-url-goes-here'
+    read: true
 }
 
 async function updateBook(book) {
@@ -250,8 +252,8 @@ async function updateBook(book) {
                 'content-type': 'application/json'
             },
             body: JSON.stringify({
-                // Provide new cover_url to update book with id 1
-                cover_url: book.cover_url
+                // Provide new read value to update book with id 1
+                read: book.read
             })
         }).then(response => {
             if (!response.ok) {
