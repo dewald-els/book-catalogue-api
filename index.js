@@ -28,7 +28,7 @@ server.use((request, response, next) => {
         if (token === key) {
             return next()
         } else {
-            return response.status('401').json({error: 'Invalid API Key provided - are not allowed to access this resource'})
+            return response.status('403').json({error: 'Invalid API Key provided - are not allowed to access this resource'})
         }
     }
 

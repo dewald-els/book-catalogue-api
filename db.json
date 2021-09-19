@@ -1,0 +1,18 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Hitchhiker's Guide to the Galaxy",
+      "author": "Douglas Adams",
+      "cover_url": "https://images-na.ssl-images-amazon.com/images/I/91TpAAdiBLL.jpg",
+      "read": false,
+      "userId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "dewaldels"
+    }
+  ]
+}
